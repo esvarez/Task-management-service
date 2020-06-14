@@ -2,28 +2,19 @@ package dev.ericksuarez.task.management.service.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories;
 
-import dev.ericksuarez.task.management.service.service.TestService;
+import dev.ericksuarez.task.management.service.application.controller.TaskController;
+import dev.ericksuarez.task.management.service.service.TaskManagementService;
+import dev.ericksuarez.task.management.service.service.repository.TaskRepository;
 
-@RestController
-@SpringBootApplication(scanBasePackages = "dev.ericksuarez.task.management.service")
+@SpringBootApplication
+@EnableReactiveMongoRepositories(basePackageClasses = TaskRepository.class )
+@ComponentScan(basePackageClasses = { TaskController.class, TaskManagementService.class })
 public class TaskManagementApplication {
-
-	private final TestService testService;
-
-	public TaskManagementApplication(TestService testService) {
-		this.testService = testService;
-	}
-
-	@GetMapping("/")
-	public String home() {
-		return testService.message();
-	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(TaskManagementApplication.class, args);
 	}
-
 }
