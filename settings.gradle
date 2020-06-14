@@ -1,0 +1,4 @@
+rootProject.name = 'task-management-service'
+
+include 'service'
+include 'application'
