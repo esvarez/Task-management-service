@@ -1,7 +1,0 @@
-rootProject.name = 'task-management-service'
-
-include 'api'
-include 'client'
-include 'service'
-include 'application'
-include 'integration'
