@@ -23,7 +23,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build  
     - name: Where iam
-      run: ls -la /build/libs/
+      run: pwd
     - name: see it
       run: ls -la
     - name: upload artifacts
