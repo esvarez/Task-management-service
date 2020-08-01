@@ -32,7 +32,7 @@ jobs:
       uses: actions/upload-artifact@master
       with: 
         name: Package
-        path: /build/libs/task-management-service-0.0.1-SNAPSHOT.jar
+        path: build/libs/task-management-service-0.0.1-SNAPSHOT.jar
   
   deploy:
     needs: build
