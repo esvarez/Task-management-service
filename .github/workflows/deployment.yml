@@ -23,9 +23,11 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build  
     - name: Where iam
-      run: pwd
-    - name: see it
       run: ls -la
+    - name: see it
+      run: ls -la build/
+    - name: see it
+      run: ls -la build/libs/
     - name: upload artifacts
       uses: actions/upload-artifact@master
       with: 
