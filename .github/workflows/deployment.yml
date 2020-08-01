@@ -23,7 +23,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build  
     - name: Where iam
-      run: ls -la /home/runner/work/Task-management-service/build/libs/
+      run: ls -la /build/libs/
     - name: see it
       run: ls -la
     - name: upload artifacts
