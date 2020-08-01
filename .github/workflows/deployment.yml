@@ -21,20 +21,16 @@ jobs:
     - name: Test with Gradle
       run: ./gradlew test
     - name: Build with Gradle
-      run: ./gradlew build  
-    - name: Where iam
-      run: ls -la
-    - name: see it
-      run: ls -la build/
-    - name: see it
-      run: ls -la build/libs/
+      run: ./gradlew build      
     - name: upload artifacts
       uses: actions/upload-artifact@master
       with: 
         name: Package
         path: |
           build/libs/*.jar
-          example.txt
+          appspec.yml
+          buildspec.yml
+          scripts/*.sh
   
   deploy:
     needs: build
@@ -52,9 +48,7 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
-
-    - name: Where iam
-      run: ls -la
+    
     - name: Copy files to S3 with the AWS CLI
       run: |
         aws s3 sync staging/ s3://${{ secrets.AWS_S3_BUCKET }}
