@@ -55,5 +55,5 @@ jobs:
       run: ls -la
     - name: Copy files to S3 with the AWS CLI
       run: |
-        aws s3 sync build/libs s3://${{ secrets.AWS_S3_BUCKET }}
+        aws s3 sync staging/ s3://${{ secrets.AWS_S3_BUCKET }}
     
