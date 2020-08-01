@@ -30,7 +30,7 @@ jobs:
       uses: actions/upload-artifact@master
       with: 
         name: Package
-        path: /home/runner/work/hello-world-war/hello-world-war/target/hello-world-war-1.0.0.war
+        path: /home/runner/work/Task-management-service/build/libs/*.jar
   
   deploy:
     needs: build
@@ -51,5 +51,5 @@ jobs:
 
     - name: Copy files to S3 with the AWS CLI
       run: |
-        aws s3 sync /home/runner/work/hello-world-war/hello-world-war/staging s3://${{ secrets.AWS_S3_BUCKET }}
+        aws s3 sync /home/runner/work/Task-management-service/build/libs s3://${{ secrets.AWS_S3_BUCKET }}
     
