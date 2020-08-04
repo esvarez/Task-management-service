@@ -26,6 +26,13 @@ jobs:
       run: pwd
     - name: check files
       run: ls -la
+    - name: Archive Release
+      uses: thedoctor0/zip-release@master
+      with:
+        filename: 'release.zip'
+        directory: '/build/libs/*.jar appspec.yml buildspec.yml /scripts/*.sh'
+    - name: check files 2
+      run: ls -la   
     - name: upload artifacts
       uses: actions/upload-artifact@master
       with: 
