@@ -22,18 +22,12 @@ jobs:
       run: ./gradlew test
     - name: Build with Gradle
       run: ./gradlew build   
-    - name: Where i am?
-      run: pwd
-    - name: check files
-      run: ls -la
     - name: Archive Release
       uses: papeloto/action-zip@v1
       with:
         files: build/libs/ appspec.yml buildspec.yml /scripts/
         dest: release.zip
         
-    - name: check files 2
-      run: ls -la   
     - name: upload artifacts
       uses: actions/upload-artifact@master
       with: 
