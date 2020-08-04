@@ -21,16 +21,20 @@ jobs:
     - name: Test with Gradle
       run: ./gradlew test
     - name: Build with Gradle
-      run: ./gradlew build      
+      run: ./gradlew build   
+    - uses: actions/checkout@master
+    - name: Archive Release
+      uses: thedoctor0/zip-release@master
+      with:
+        filename: 'release.zip'
+        directory: 'build/libs/*.jar appspec.yml buildspec.yml scripts/*.sh'
+    - name: check files
+      run: ls -la
     - name: upload artifacts
       uses: actions/upload-artifact@master
       with: 
         name: Package
-        path: |
-          build/libs/*.jar
-          appspec.yml
-          buildspec.yml
-          scripts/*.sh
+        path: release.zip
   
   deploy:
     needs: build
