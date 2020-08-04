@@ -30,18 +30,14 @@ jobs:
       uses: thedoctor0/zip-release@master
       with:
         filename: 'release.zip'
-        directory: '/build/libs/*.jar appspec.yml buildspec.yml /scripts/*.sh'
+        directory: '/build/libs/* appspec.yml buildspec.yml /scripts/*'
     - name: check files 2
       run: ls -la   
     - name: upload artifacts
       uses: actions/upload-artifact@master
       with: 
         name: Package
-        path: |
-          build/libs/*.jar
-          appspec.yml
-          buildspec.yml
-          scripts/*.sh
+        path: release.zip
   
   deploy:
     needs: build
