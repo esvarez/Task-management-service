@@ -27,10 +27,11 @@ jobs:
     - name: check files
       run: ls -la
     - name: Archive Release
-      uses: thedoctor0/zip-release@master
+      uses: papeloto/action-zip@v1
       with:
-        filename: 'release.zip'
-        directory: '/build/libs/* appspec.yml buildspec.yml /scripts/*'
+        files: build/libs/* appspec.yml buildspec.yml /scripts/*
+        dest: release.zip
+        
     - name: check files 2
       run: ls -la   
     - name: upload artifacts
