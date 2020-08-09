@@ -40,7 +40,7 @@ public class TaskServiceTest {
             final String id = "any-id";
             when(taskRepository.findById(anyString()))
                     .thenReturn(Optional.of(buildTask()));
-            final var task = taskService.findTask(id);
+            final var task = taskService.findTaskById(id);
             assertEquals("Do Task managment service", task.getName());
         }
     }

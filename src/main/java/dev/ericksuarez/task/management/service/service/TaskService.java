@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.function.Function;
 
 @Slf4j
@@ -20,7 +21,7 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
-    public Task findTask(String id) {
+    public Task findTaskById(String id) {
         // TODO create custom exception
         log.info("event=findTask id={}", id);
         return taskRepository.findById(id)
@@ -51,13 +52,13 @@ public class TaskService {
 
     public ResponseEntity deleteTask(String id) {
         log.info("event=deleteTaskInvoked id={}", id);
-        var taskToDelete = findTask(id);
+        var taskToDelete = findTaskById(id);
         taskRepository.delete(taskToDelete);
         return ResponseEntity.ok().build();
     }
 
     private Function<Task, Task> completeTask = task -> task.toBuilder().done(true).build();
-    private Function<Task, Task> undoTask = task -> task.toBuilder().done(true).build();
+    private Function<Task, Task> undoTask = task -> task.toBuilder().done(false).build();
 
     private Task patchTask(String id, Function<Task, Task> patch) {
         return taskRepository.findById(id)
